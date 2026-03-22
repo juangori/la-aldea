@@ -13,7 +13,7 @@
     <ul class="nav-links" id="nav-links">
       <li><a href="#servicios">Servicios</a></li>
       <li><a href="#calculadora">Calculadora</a></li>
-      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#contacto" class="nav-cta">Contacto</a></li>
     </ul>
   </div>
 </nav>
@@ -25,16 +25,17 @@
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 16px 0;
-    transition: all 0.4s ease;
+    padding: 20px 0;
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
     background: transparent;
   }
 
   .navbar.scrolled {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    box-shadow: 0 2px 30px rgba(0,0,0,0.08);
-    padding: 8px 0;
+    background: rgba(20, 18, 17, 0.85);
+    backdrop-filter: blur(24px) saturate(1.4);
+    -webkit-backdrop-filter: blur(24px) saturate(1.4);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.05), 0 8px 40px rgba(0,0,0,0.3);
+    padding: 10px 0;
   }
 
   .nav-container {
@@ -46,109 +47,134 @@
   .nav-logo {
     display: flex;
     align-items: center;
-    gap: 12px;
   }
 
   .logo-img {
-    height: 50px;
+    height: 48px;
     width: auto;
     border-radius: 50%;
-    transition: transform 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
   }
 
   .navbar.scrolled .logo-img {
-    height: 40px;
+    height: 38px;
   }
 
   .logo-img:hover {
-    transform: scale(1.05);
+    transform: scale(1.08) rotate(-2deg);
   }
 
   .nav-links {
     display: flex;
     list-style: none;
-    gap: 40px;
+    gap: 36px;
     align-items: center;
   }
 
   .nav-links a {
-    font-weight: 500;
-    font-size: 0.95rem;
-    color: var(--white);
-    transition: color 0.3s ease;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.7);
+    transition: all 0.3s ease;
     position: relative;
-    letter-spacing: 0.5px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
+    padding: 6px 0;
   }
 
-  .navbar.scrolled .nav-links a {
-    color: var(--gray-800);
+  .nav-links a:hover {
+    color: var(--white);
   }
 
   .nav-links a::after {
     content: '';
     position: absolute;
-    bottom: -4px;
-    left: 0;
+    bottom: 0;
+    left: 50%;
     width: 0;
     height: 2px;
     background: var(--red);
-    transition: width 0.3s ease;
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateX(-50%);
+    border-radius: 1px;
   }
 
   .nav-links a:hover::after {
     width: 100%;
   }
 
+  .nav-cta {
+    background: var(--red) !important;
+    color: var(--white) !important;
+    padding: 10px 24px !important;
+    border-radius: 8px;
+    letter-spacing: 1px !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .nav-cta::after {
+    display: none !important;
+  }
+
+  .nav-cta:hover {
+    background: var(--red-dark) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px var(--red-glow);
+  }
+
   .hamburger {
     display: none;
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 4px;
+    padding: 6px;
+    z-index: 1001;
   }
 
   .hamburger span {
-    width: 28px;
+    width: 26px;
     height: 2px;
     background: var(--white);
-    transition: all 0.3s ease;
-  }
-
-  .navbar.scrolled .hamburger span {
-    background: var(--gray-800);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    border-radius: 2px;
+    transform-origin: center;
   }
 
   @media (max-width: 768px) {
     .hamburger {
       display: flex;
-      z-index: 1001;
     }
 
     .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
+      transform: rotate(45deg) translate(5.5px, 5.5px);
     }
     .hamburger.active span:nth-child(2) {
       opacity: 0;
+      transform: scaleX(0);
     }
     .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
+      transform: rotate(-45deg) translate(5.5px, -5.5px);
     }
 
     .nav-links {
       position: fixed;
       top: 0;
       right: -100%;
-      width: 70%;
+      width: 75%;
+      max-width: 320px;
       height: 100vh;
-      background: var(--white);
+      height: 100dvh;
+      background: var(--gray-900);
       flex-direction: column;
       justify-content: center;
-      gap: 32px;
-      transition: right 0.4s ease;
-      box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+      gap: 28px;
+      transition: right 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow: -20px 0 60px rgba(0,0,0,0.5);
+      border-left: 1px solid rgba(255,255,255,0.06);
     }
 
     .nav-links.open {
@@ -156,8 +182,17 @@
     }
 
     .nav-links a {
-      color: var(--gray-800) !important;
-      font-size: 1.2rem;
+      color: rgba(255,255,255,0.6) !important;
+      font-size: 1rem;
+      letter-spacing: 2px;
+    }
+
+    .nav-links a:hover {
+      color: var(--white) !important;
+    }
+
+    .nav-cta {
+      margin-top: 8px;
     }
   }
 </style>
@@ -168,8 +203,8 @@
   const navLinks = document.getElementById('nav-links')!;
 
   window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
-  });
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
 
   hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');

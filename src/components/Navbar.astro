@@ -1,0 +1,185 @@
+---
+---
+<nav class="navbar" id="navbar">
+  <div class="container nav-container">
+    <a href="#hero" class="nav-logo">
+      <img src="/logo.png" alt="La Aldea" class="logo-img" />
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#calculadora">Calculadora</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 16px 0;
+    transition: all 0.4s ease;
+    background: transparent;
+  }
+
+  .navbar.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 2px 30px rgba(0,0,0,0.08);
+    padding: 8px 0;
+  }
+
+  .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logo-img {
+    height: 50px;
+    width: auto;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+  }
+
+  .navbar.scrolled .logo-img {
+    height: 40px;
+  }
+
+  .logo-img:hover {
+    transform: scale(1.05);
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--white);
+    transition: color 0.3s ease;
+    position: relative;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .navbar.scrolled .nav-links a {
+    color: var(--gray-800);
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--red);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    width: 28px;
+    height: 2px;
+    background: var(--white);
+    transition: all 0.3s ease;
+  }
+
+  .navbar.scrolled .hamburger span {
+    background: var(--gray-800);
+  }
+
+  @media (max-width: 768px) {
+    .hamburger {
+      display: flex;
+      z-index: 1001;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .nav-links {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 70%;
+      height: 100vh;
+      background: var(--white);
+      flex-direction: column;
+      justify-content: center;
+      gap: 32px;
+      transition: right 0.4s ease;
+      box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+    }
+
+    .nav-links.open {
+      right: 0;
+    }
+
+    .nav-links a {
+      color: var(--gray-800) !important;
+      font-size: 1.2rem;
+    }
+  }
+</style>
+
+<script>
+  const navbar = document.getElementById('navbar')!;
+  const hamburger = document.getElementById('hamburger')!;
+  const navLinks = document.getElementById('nav-links')!;
+
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('open');
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      navLinks.classList.remove('open');
+    });
+  });
+</script>

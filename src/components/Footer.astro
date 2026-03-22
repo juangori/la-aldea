@@ -1,0 +1,114 @@
+---
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="/logo.png" alt="La Aldea" class="footer-logo" />
+        <p>Fábrica de hielo, productos congelados y distribución. Calidad y compromiso desde el primer día.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navegación</h4>
+        <a href="#hero">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#calculadora">Calculadora</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <div class="footer-social">
+        <h4>Seguinos</h4>
+        <a href="https://instagram.com/tu_usuario" target="_blank" class="social-link">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="5"/>
+            <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
+          </svg>
+          <span>Instagram</span>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; {year} La Aldea - Hielo & Congelados. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--gray-800);
+    color: rgba(255,255,255,0.7);
+    padding: 60px 0 0;
+  }
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .footer-brand {
+    max-width: 320px;
+  }
+
+  .footer-logo {
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 16px;
+  }
+
+  .footer-brand p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .footer-links h4,
+  .footer-social h4 {
+    color: var(--white);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-links a {
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+
+  .footer-links a:hover {
+    color: var(--white);
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+
+  .social-link:hover {
+    color: var(--white);
+  }
+
+  .footer-bottom {
+    padding: 24px 0;
+    text-align: center;
+    font-size: 0.82rem;
+  }
+
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+</style>

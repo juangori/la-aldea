@@ -1,27 +1,27 @@
 ---
 const services = [
   {
-    icon: `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="12" y="8" width="40" height="48" rx="4"/><path d="M22 28h20M32 18v20"/><circle cx="32" cy="38" r="3" fill="currentColor"/><path d="M20 56h24" stroke-linecap="round"/></svg>`,
+    icon: `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="8" width="40" height="48" rx="4"/><path d="M22 28h20M32 18v20"/><circle cx="32" cy="38" r="3" fill="currentColor"/><path d="M20 56h24"/></svg>`,
     title: "Fábrica de Hielo",
-    description: "Producimos hielo de la más alta pureza con agua tratada y filtrada. Bolsas de 4kg y 20kg disponibles.",
+    description: "Producimos hielo de la más alta pureza con agua tratada y filtrada.",
     features: ["Agua filtrada", "Bolsas 4kg y 20kg", "Producción continua"]
   },
   {
-    icon: `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="8" y="16" width="48" height="36" rx="4"/><path d="M8 28h48"/><circle cx="20" cy="40" r="4"/><circle cx="32" cy="40" r="4"/><circle cx="44" cy="40" r="4"/><path d="M24 8l8 8 8-8"/></svg>`,
+    icon: `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="16" width="48" height="36" rx="4"/><path d="M8 28h48"/><circle cx="20" cy="40" r="4"/><circle cx="32" cy="40" r="4"/><circle cx="44" cy="40" r="4"/><path d="M24 8l8 8 8-8"/></svg>`,
     title: "Productos Congelados",
-    description: "Amplia variedad de productos congelados de primeras marcas. Desde hamburguesas hasta mariscos.",
-    features: ["Primeras marcas", "Variedad completa", "Cadena de frío garantizada"]
+    description: "Amplia variedad de productos congelados de primeras marcas.",
+    features: ["Primeras marcas", "Variedad completa", "Cadena de frío"]
   },
   {
-    icon: `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="10" y="20" width="36" height="28" rx="3"/><path d="M18 20V14a14 14 0 0128 0v6"/><circle cx="28" cy="34" r="4"/><path d="M28 38v4"/><path d="M46 30h10l-4 18H46"/></svg>`,
+    icon: `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="20" width="36" height="28" rx="3"/><path d="M18 20V14a14 14 0 0128 0v6"/><circle cx="28" cy="34" r="4"/><path d="M28 38v4"/><path d="M46 30h10l-4 18H46"/></svg>`,
     title: "Venta Minorista",
-    description: "Visitá nuestro local y llevá todo lo que necesitás. Atención personalizada y los mejores precios.",
+    description: "Visitá nuestro local y llevá todo lo que necesitás.",
     features: ["Atención personalizada", "Mejores precios", "Local acondicionado"]
   },
   {
-    icon: `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 44h8l4-8h32l4 8h8"/><rect x="16" y="20" width="32" height="16" rx="3"/><circle cx="18" cy="48" r="4"/><circle cx="46" cy="48" r="4"/><path d="M24 28h16M32 24v8"/></svg>`,
+    icon: `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 44h8l4-8h32l4 8h8"/><rect x="16" y="20" width="32" height="16" rx="3"/><circle cx="18" cy="48" r="4"/><circle cx="46" cy="48" r="4"/><path d="M24 28h16M32 24v8"/></svg>`,
     title: "Distribución",
-    description: "Llevamos hielo y congelados hasta tu negocio o evento. Cobertura en toda la zona con flota propia.",
+    description: "Llevamos hielo y congelados hasta tu negocio o evento.",
     features: ["Flota propia", "Cobertura zonal", "Entregas puntuales"]
   }
 ];
@@ -36,21 +36,24 @@ const services = [
     </div>
     <div class="services-grid">
       {services.map((service, i) => (
-        <div class="service-card fade-in" style={`animation-delay: ${i * 0.15}s`}>
+        <article class="service-card fade-in" style={`transition-delay: ${i * 0.1}s`}>
+          <div class="card-glow"></div>
           <div class="service-icon" set:html={service.icon} />
           <h3>{service.title}</h3>
-          <p>{service.description}</p>
+          <p class="service-desc">{service.description}</p>
           <ul class="service-features">
             {service.features.map(f => (
               <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2.5">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
+                <span class="check-mark">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </span>
                 {f}
               </li>
             ))}
           </ul>
-        </div>
+        </article>
       ))}
     </div>
   </div>
@@ -58,64 +61,76 @@ const services = [
 
 <style>
   .services {
-    padding: 120px 0;
+    padding: var(--section-pad) 0;
     background: var(--off-white);
     position: relative;
   }
 
+  /* Smooth transition from hero dark to light */
   .services::before {
     content: '';
     position: absolute;
-    top: 0;
+    top: -2px;
     left: 0;
     right: 0;
-    height: 120px;
-    background: linear-gradient(to bottom, var(--white), var(--off-white));
+    height: 160px;
+    background: linear-gradient(to bottom, var(--gray-900), var(--off-white));
+    pointer-events: none;
+  }
+
+  .section-title h2 {
+    color: var(--gray-800);
   }
 
   .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 32px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
   }
 
   .service-card {
-    background: var(--white);
-    border-radius: 20px;
-    padding: 40px 32px;
-    transition: all 0.4s ease;
-    border: 1px solid var(--gray-200);
     position: relative;
+    background: var(--white);
+    border-radius: 16px;
+    padding: 36px 28px;
+    transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    border: 1px solid var(--gray-100);
     overflow: hidden;
+    cursor: default;
   }
 
-  .service-card::before {
-    content: '';
+  .card-glow {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
-    background: var(--red);
+    height: 3px;
+    background: linear-gradient(90deg, var(--red), var(--frost-blue));
     transform: scaleX(0);
-    transition: transform 0.4s ease;
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .service-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 60px rgba(196, 30, 42, 0.1);
+    transform: translateY(-6px);
+    box-shadow: 0 24px 48px rgba(0,0,0,0.06), 0 8px 16px rgba(0,0,0,0.04);
     border-color: transparent;
   }
 
-  .service-card:hover::before {
+  .service-card:hover .card-glow {
     transform: scaleX(1);
   }
 
   .service-icon {
-    width: 56px;
-    height: 56px;
+    width: 48px;
+    height: 48px;
     color: var(--red);
-    margin-bottom: 24px;
+    margin-bottom: 20px;
+    transition: transform 0.35s ease;
+  }
+
+  .service-card:hover .service-icon {
+    transform: scale(1.1);
   }
 
   .service-icon :global(svg) {
@@ -124,17 +139,20 @@ const services = [
   }
 
   h3 {
-    font-size: 1.4rem;
-    margin-bottom: 12px;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 10px;
     color: var(--gray-800);
-    font-family: 'Outfit', sans-serif;
+    letter-spacing: -0.01em;
   }
 
-  p {
-    color: var(--gray-600);
+  .service-desc {
+    color: var(--gray-500);
     line-height: 1.7;
     margin-bottom: 20px;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    font-weight: 400;
   }
 
   .service-features {
@@ -142,29 +160,43 @@ const services = [
     display: flex;
     flex-direction: column;
     gap: 8px;
+    border-top: 1px solid var(--gray-100);
+    padding-top: 16px;
   }
 
   .service-features li {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 0.88rem;
-    color: var(--gray-600);
+    gap: 10px;
+    font-size: 0.82rem;
+    color: var(--gray-500);
     font-weight: 500;
+  }
+
+  .check-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    background: rgba(230, 57, 70, 0.08);
+    color: var(--red);
+    flex-shrink: 0;
   }
 
   @media (max-width: 768px) {
     .services {
-      padding: 80px 0;
+      padding: 100px 0 80px;
     }
 
     .services-grid {
       grid-template-columns: 1fr;
-      gap: 24px;
+      gap: 16px;
     }
 
     .service-card {
-      padding: 32px 24px;
+      padding: 28px 22px;
     }
   }
 </style>
